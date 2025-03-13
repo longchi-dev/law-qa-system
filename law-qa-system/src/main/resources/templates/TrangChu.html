@@ -1,0 +1,367 @@
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org" lang="vn">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+
+    <body>
+    <div class="container-fluid">
+        <div th:switch="${user}">
+            <div th:case="null">
+                <div th:replace="partials/navbar_menu :: nav"></div>
+            </div>
+            <div th:case="*"> <!-- Dùng * cho tất cả giá trị khác null -->
+                <div th:replace="partials/navbar_main :: nav"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12 position-relative">
+                    <div th:replace="partials/search_form :: searchForm"></div>
+                    <div class="row">
+                        <aside class="col-lg-3 d-none d-lg-block justify-content-center side-bar bg-grey">
+                            <div>
+                                <h6 class="fw-bold heading-side-bar">TRA CỨU VĂN BẢN</h6>
+                            </div>
+                            <div class="">
+                                <ul class="ul-side-bar">
+                                    <li>Văn bản mới</li>
+                                    <li>Văn bản luật Việt Nam</li>
+                                    <li>Văn bản UBND</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold heading-side-bar">LĨNH VỰC TRA CỨU</h6>
+                            </div>
+                            <div>
+                                <ul class="ul-side-bar scroll">
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                    <li>Thuế-Phí-Lệ phí</li>
+                                    <li>Lao động-Tiền lương</li>
+                                    <li>Tài chính-Ngân hàng</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold heading-side-bar">AI - LUẬT</h6>
+                            </div>
+                            <div>
+                                <ul class="ul-side-bar">
+                                    <li>AI luật - Trợ lý ảo Luật Việt Nam</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold heading-side-bar">HỎI ĐÁP PHÁP LUẬT</h6>
+                            </div>
+                            <div>
+                                <ul class="ul-side-bar">
+                                    <li>Câu hỏi thường gặp</li>
+                                    <li>Đặt câu hỏi</li>
+                                </ul>
+                            </div>
+                        </aside>
+                        <div class="col-lg-9 col-12 main-content">
+                            <div class="col-xs-12">
+                                <nav>
+                                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-new-document-tab" data-bs-toggle="tab" href="#nav-new-document" role="tab" aria-controls="nav-new-document" aria-selected="true">Văn bản mới</a>
+                                        <a class="nav-item nav-link" id="nav-new-dispatch-tab" data-bs-toggle="tab" href="#nav-new-dispatch" role="tab" aria-controls="nav-new-dispatch" aria-selected="false">Công văn mới</a>
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Thông tư</a>
+                                        <a class="nav-item nav-link" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Quyết định</a>
+                                    </div>
+                                </nav>
+
+                                <div class="tab-content py-0 px-0 px-sm-0" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-new-document" role="tabpanel" aria-labelledby="nav-new-document-tab">
+                                        <div th:each="document, iterStat : ${newDocuments}">
+                                            <div>
+                                                <div class="article highlight">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="article-title">
+<!--                                                                <span th:if="${document.isFeatured}" class="btn-highlight">Nổi bật</span>-->
+<!--                                                                <span th:if="${!document.isFeatured}" class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>-->
+                                                                <span class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>
+                                                                <a class="text-decoration-none" th:href="@{/documents/{id}(id=${document.id})}" th:text="${document.title}"></a>
+                                                            </div>
+                                                            <div class="article-function">
+                                                                <a href="" class="text-decoration-none" title="Thuộc tính">Tóm tắt</a>
+                                                                <a href="" class="text-decoration-none" title="Văn bản liên quan">Văn bản liên quan</a>
+                                                                <a href="" class="text-decoration-none" title="Hiệu lực">Hiệu lực</a>
+                                                                <a href="" class="text-decoration-none" title="Lược đồ">Lược đồ</a>
+                                                                <a href="" class="text-decoration-none" title="Tải về">Tải về</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div>
+                                                                <span class="">Ban hành: </span>
+<!--                                                                <span class="article-meta" th:data-issue-date="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}" th:text="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}"></span>-->
+                                                                <span class="article-meta" th:text="${document.issueDate != null ? document.issueDate : 'Đang cập nhật'}"></span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Áp dụng: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="">Hiệu lực: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Cập nhật: </span>
+                                                                <span class="article-meta" th:text="${#temporals.format(document.updatedAt, 'dd/MM/yyyy')}"></span>
+                                                            </div>
+<!--                                                            <div th:each="detail : ${document.documentDetails}">-->
+<!--                                                                <div class="d-lg-block d-none">-->
+<!--                                                                    <span class="">Áp dụng: </span>-->
+<!--                                                                    <span class="article-meta" th:text="${detail.applyStatus}"></span>-->
+<!--                                                                </div>-->
+<!--                                                                <div>-->
+<!--                                                                    <span class="">Hiệu lực: </span>-->
+<!--                                                                    <span class="article-meta" th:text="${detail.validityStatus}"></span>-->
+<!--                                                                </div>-->
+<!--                                                                <div class="d-lg-block d-none">-->
+<!--                                                                    <span class="">Cập nhật: </span>-->
+<!--                                                                    <span class="article-meta" th:text="${#temporals.format(document.updateDate, 'dd/MM/yyyy')}"></span>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="article-more">
+                                            <a href="/documents/search" class="text-decoration-none">
+                                                <i>Xem thêm <i class="p-1 fa-solid fa-arrow-right"></i></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="nav-new-dispatch" role="tabpanel" aria-labelledby="nav-new-dispatch-tab">
+                                        <div th:each="document, iterStat : ${officialDocuments}">
+                                            <div>
+                                                <div class="article highlight">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="article-title">
+                                                                <!-- <span th:if="${document.isFeatured}" class="btn-highlight">Nổi bật</span>-->
+                                                                <!-- <span th:if="${!document.isFeatured}" class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>-->
+                                                                <span class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>
+                                                                <a class="text-decoration-none" th:href="@{/documents/{id}(id=${document.id})}" th:text="${document.title}"></a>
+                                                            </div>
+                                                            <div class="article-function">
+                                                                <a href="" class="text-decoration-none" title="Thuộc tính">Tóm tắt</a>
+                                                                <a href="" class="text-decoration-none" title="Văn bản liên quan">Văn bản liên quan</a>
+                                                                <a href="" class="text-decoration-none" title="Hiệu lực">Hiệu lực</a>
+                                                                <a href="" class="text-decoration-none" title="Lược đồ">Lược đồ</a>
+                                                                <a href="" class="text-decoration-none" title="Tải về">Tải về</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div>
+                                                                <span class="">Ban hành: </span>
+                                                                <!-- <span class="article-meta" th:data-issue-date="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}" th:text="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}"></span>-->
+                                                                <span class="article-meta" th:text="${document.issueDate != null ? document.issueDate : 'Đang cập nhật'}"></span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Áp dụng: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="">Hiệu lực: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Cập nhật: </span>
+                                                                <span class="article-meta" th:text="${#temporals.format(document.updatedAt, 'dd/MM/yyyy')}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="article-more">
+                                            <a class="text-decoration-none">
+                                                <i>Xem thêm <i class="p-1 fa-solid fa-arrow-right"></i></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                        <div th:each="document, iterStat : ${circularDocuments}">
+                                            <div>
+                                                <div class="article highlight">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="article-title">
+                                                                <!-- <span th:if="${document.isFeatured}" class="btn-highlight">Nổi bật</span>-->
+                                                                <!-- <span th:if="${!document.isFeatured}" class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>-->
+                                                                <span class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>
+                                                                <a class="text-decoration-none" th:href="@{/documents/{id}(id=${document.id})}" th:text="${document.title}"></a>
+                                                            </div>
+                                                            <div class="article-function">
+                                                                <a href="" class="text-decoration-none" title="Thuộc tính">Tóm tắt</a>
+                                                                <a href="" class="text-decoration-none" title="Văn bản liên quan">Văn bản liên quan</a>
+                                                                <a href="" class="text-decoration-none" title="Hiệu lực">Hiệu lực</a>
+                                                                <a href="" class="text-decoration-none" title="Lược đồ">Lược đồ</a>
+                                                                <a href="" class="text-decoration-none" title="Tải về">Tải về</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div>
+                                                                <span class="">Ban hành: </span>
+                                                                <!-- <span class="article-meta" th:data-issue-date="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}" th:text="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}"></span>-->
+                                                                <span class="article-meta" th:text="${document.issueDate != null ? document.issueDate : 'Đang cập nhật'}"></span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Áp dụng: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="">Hiệu lực: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Cập nhật: </span>
+                                                                <span class="article-meta" th:text="${#temporals.format(document.updatedAt, 'dd/MM/yyyy')}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="article-more">
+                                            <a class="text-decoration-none">
+                                                <i>Xem thêm <i class="p-1 fa-solid fa-arrow-right"></i></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                        <div th:each="document, iterStat : ${decisionDocuments}">
+                                            <div>
+                                                <div class="article highlight">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="article-title">
+                                                                <!-- <span th:if="${document.isFeatured}" class="btn-highlight">Nổi bật</span>-->
+                                                                <!-- <span th:if="${!document.isFeatured}" class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>-->
+                                                                <span class="fw-bold text-black pe-3" th:text="${iterStat.count}"></span>
+                                                                <a class="text-decoration-none" th:href="@{/documents/{id}(id=${document.id})}" th:text="${document.title}"></a>
+                                                            </div>
+                                                            <div class="article-function">
+                                                                <a href="" class="text-decoration-none" title="Thuộc tính">Tóm tắt</a>
+                                                                <a href="" class="text-decoration-none" title="Văn bản liên quan">Văn bản liên quan</a>
+                                                                <a href="" class="text-decoration-none" title="Hiệu lực">Hiệu lực</a>
+                                                                <a href="" class="text-decoration-none" title="Lược đồ">Lược đồ</a>
+                                                                <a href="" class="text-decoration-none" title="Tải về">Tải về</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div>
+                                                                <span class="">Ban hành: </span>
+                                                                <!-- <span class="article-meta" th:data-issue-date="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}" th:text="${#temporals.format(document.issueDate, 'dd/MM/yyyy')}"></span>-->
+                                                                <span class="article-meta" th:text="${document.issueDate != null ? document.issueDate : 'Đang cập nhật'}"></span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Áp dụng: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="">Hiệu lực: </span>
+                                                                <span class="article-meta">Đã biết</span>
+                                                            </div>
+                                                            <div class="d-lg-block d-none">
+                                                                <span class="">Cập nhật: </span>
+                                                                <span class="article-meta" th:text="${#temporals.format(document.updatedAt, 'dd/MM/yyyy')}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="article-more">
+                                            <a class="text-decoration-none">
+                                                <i>Xem thêm <i class="p-1 fa-solid fa-arrow-right"></i></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-box-danger" id="paymentFailData" th:data-payment-success="${paymentSuccess}">
+            <div class="modal fade" id="paymentFailModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close-model" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <div class="modal-body">
+                            <div class="modal-icon">
+                                <i class="fa-regular fa-bell"></i>
+                            </div>
+                            <h3 class="title">Thông báo</h3>
+                            <p class="description">Nạp tiền không thành công</p>
+                            <button class="btn-cont" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" >Đồng ý</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-box-success" id="paymentSuccessData" th:data-payment-success="${paymentSuccess}">
+            <div class="modal fade" id="paymentSuccessModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close-model" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <div class="modal-body">
+                            <div class="modal-icon">
+                                <i class="fa fa-smile"></i>
+                            </div>
+                            <p class="description">Nạp tiền thành công</p>
+                            <button class="btn-cont" data-bs-dismiss="modal" >Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-dark text-center py-3">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        <p>Designed with 💻 by Your Name</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Thêm vào trong <head> của HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Your custom JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+    </body>
+    </html>

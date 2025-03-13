@@ -1,0 +1,134 @@
+<nav>
+    <div class="container-fluid p-0">
+        <div class="container-fluid container-lg p-0">
+            <div class="textColor">
+                <div class="row justify-content-center align-items-center mx-auto">
+                    <div class="col-12 col-lg-3 p-0">
+                        <div class="display-3 fw-bold py-2 text-center text-lg-start d-none d-lg-block">
+                            <img class="img-logo" th:src="@{/images/logo.png}" alt="Luật Việt Nam">
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-lg-9 d-none d-lg-flex justify-content-end align-items-center gap-3 p-0">
+                        <a href="#" class="text-dark d-flex align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal" >
+                            <i class="fa-solid fa-right-to-bracket me-1"></i>
+                            <div><b>Đăng ký / Đăng nhập</b></div>
+                        </a>
+                    </div>
+                    <div class="modal fade" id="loginModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">ĐĂNG NHẬP</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form th:action="@{/account/login}" method="post">
+<!--                                        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>-->
+
+                                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <div class="input-group">
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-envelope"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Mật khẩu</label>
+                                            <div class="input-group">
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+                                                <span class="input-group-text password-toggle">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <a href="/account/doi-mat-khau" class="text-decoration-none">Quên mật khẩu?</a>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-login text-white">Đăng nhập</button>
+
+                                        <div class="divider">
+                                            <span>Hoặc</span>
+                                        </div>
+
+                                        <div class="social-login">
+                                            <a type="button" class="btn btn-social" href="/oauth2/authorization/google">
+                                                <i class="fab fa-google"></i>Google
+                                            </a>
+                                            <a type="button" class="btn btn-social" href="/oauth2/authorization/facebook">
+                                                <i class="fab fa-facebook-f"></i>Facebook
+                                            </a>
+                                        </div>
+
+                                        <div class="register-link">
+                                            Chưa có tài khoản? <a th:href="@{/account/dang-ky}" class="text-decoration-none">Đăng ký</a>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0 d-lg-none">
+            <div class="text-center display-3 fw-bold mb-2 d-lg-none"> <img class="img-logo" th:src="@{/images/logo.jpg}" alt="Luật Việt Nam"></div>
+            <div class="navbarBgDark" data-bs-theme="dark">
+                <nav class="navbar navbar-expand-lg justify-content-center justify-content-lg-between p-0 fw-bolder">
+                    <button class="navbar-toggler m-3 w-100" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                        <ul class="navbar-nav ps-3">
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3 d-lg-none" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng ký/Đăng nhập</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active pe-3 d-lg-block d-none" aria-current="page" href="/"><i class="fa-solid fa-house"></i></a>
+                                <a class="nav-link active pe-3 d-lg-none" aria-current="page" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Văn bản mới</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="list-menu">
+                                    <a class="nav-link px-lg-3" href="#">Tra cứu văn bản</a>
+                                    <ul class="list-item">
+                                        <li class="d-flex align-items-center">
+                                            <a class="text-decoration-none">Tiếng Việt</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Dự thảo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Tin văn bản mới</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Tin pháp luật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Bản tin luật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Luật sư tư vấn</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Responsive Blog Card</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Thư viện Datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        .card-container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            min-height: 100vh; /* Đảm bảo chiều cao của container đủ để căn giữa theo chiều dọc */
+            flex-direction: column; /* Căn giữa các phần tử theo chiều dọc */
+        }
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+            box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+            border: none;
+            margin-bottom: 30px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container card-container justify-content-center align-items-center h-100">
+        <div class="row w-100">
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-blue order-card payment-amount" data-amount="50000">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Mệnh giá</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-dollar-sign p-2"></i><span>50.000</span></h2>
+                        <p class="m-b-0">VNĐ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-green order-card payment-amount" data-amount="100000">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Mệnh giá</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-dollar-sign"></i><span>100.000</span></h2>
+                        <p class="m-b-0">VNĐ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-yellow order-card payment-amount" data-amount="200000">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Mệnh giá</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-dollar-sign"></i><span>200.000</span></h2>
+                        <p class="m-b-0">VNĐ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-pink order-card payment-amount" data-amount="500000">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Mệnh giá</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-dollar-sign"></i><span>500.000</span></h2>
+                        <p class="m-b-0">VNĐ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button-24" id="payButton" disabled>Tiếp tục</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

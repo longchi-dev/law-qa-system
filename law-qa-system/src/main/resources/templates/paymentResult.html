@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Result</title>
+</head>
+<body>
+
+<h1>Payment Result</h1>
+
+<!-- Hiển thị mã trả về từ API -->
+<div>
+    <p><strong>Code:</strong> <span th:text="${response.code}"></span></p>
+    <p><strong>Message:</strong> <span th:text="${response.message}"></span></p>
+</div>
+
+<!-- Hiển thị chi tiết từ phần data -->
+<div>
+    <p><strong>Data Code:</strong> <span th:text="${response.data.code}"></span></p>
+    <p><strong>Data Message:</strong> <span th:text="${response.data.message}"></span></p>
+    <p><strong>Payment URL:</strong> <span th:text="${response.data.paymentUrl}"></span></p>
+</div>
+
+</body>
+</html>

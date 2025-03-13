@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thư viện Datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="main-navbar navbar navbar-light">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#">
+                <img class="img-logo" th:src="@{/images/logo.jpg}" alt="Luật Việt Nam">
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <div>Tổng đài trực tuyến <span class="text-danger"><strong>19006192</strong></span></div>
+                <div>|</div>
+                <div class="list-menu">
+                    <a href="#" class="list-title text-decoration-none">Gói dịch vụ & giá</a>
+                    <ul class="list-item">
+                        <li><a class="text-decoration-none" href="#">Tra cứu văn bản</a></li>
+                        <li><a class="text-decoration-none" href="">AI Luật - Trợ lý </a></li>
+                    </ul>
+                </div>
+                <div>|</div>
+                <div class="list-menu">
+                    <div class="list-title border border-secondary border-1 rounded d-flex align-items-center border">
+                        <img th:src="@{/images/TiengAnh.png}" alt="Tiếng Anh" class="icon-language">
+                        <div>Tiếng Anh</div>
+                    </div>
+                    <ul class="list-item">
+                        <li class="d-flex align-items-center">
+                            <img th:src="@{/images/vn.jpg}" alt="Tiếng Anh" class="icon-language">
+                            <a class="text-decoration-none">Tiếng Việt</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="text-dark d-flex align-items-center text-decoration-none">
+                    <i class="fa-solid fa-right-to-bracket me-1"> </i>
+                    <div class=""><b>Đăng ký / Đăng nhập</b></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <nav class="menu-navbar navbar navbar-light bg-light">
+        <div class="container justify-content-center">
+            <div class="d-flex align-items-center gap-5">
+                <a class="home-button" href="#"><i class="fa-solid fa-house"></i></a>
+                <div class="list-menu">
+                    <h6 class="list-title fw-bolder m-0">Tra cứu văn bản</h6>
+                    <ul class="list-item">
+                        <li class="d-flex align-items-center">
+                            <a class="text-decoration-none">Tiếng Việt</a>
+                        </li>
+                    </ul>
+                </div>
+                <h6 class="fw-bolder m-0">Tin pháp luật</h6>
+                <h6 class="fw-bolder m-0">Bản tin luật</h6>
+                <h6 class="fw-bolder m-0">Bản án - Án lệ</h6>
+                <h6 class="fw-bolder m-0">Luật sư tư vấn</h6>
+                <h6 class="fw-bolder m-0">Gói dịch vụ và giá</h6>
+                <h6 class="fw-bolder m-0">AI Luật - Trợ lý ảo</h6>
+                <a class="home-button" href="#"><i class="fa-solid fa-bars"></i></a>
+            </div>
+        </div>
+    </nav>
+    <div class="container p-3">
+        <div class="breadcrumb gap-3">
+            <i class="fa-solid fa-house"></i>
+            <div>/</div>
+            <div>Luật sư tư vấn</div>
+            <div>/</div>
+            <div>Tạo câu hỏi</div>
+        </div>
+        <div class="row add-question">
+            <div class="title-hoi-dap">
+                <h2><i class="fa-regular fa-comments p-1"></i> Tạo câu hỏi tư vấn</h2>
+            </div>
+            <div class="col-6 col-dat-cau-hoi">
+                  <form>
+                        <div class="row g-3 align-items-center">
+                            <div class="form-group">
+                                <label class="col-form-label">Họ và tên</label>
+                                <input type="text" class="form-control" value="dangnhuquynh2403@gmail.com">
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="form-group">
+                                <label class="col-form-label">Email<span class="text-danger">*</span> </label>
+                                <input type="email" class="form-control" value="dangnhuquynh2403@gmail.com">
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="form-group">
+                                <label class="col-form-label">Số điện thoại</label>
+                                <input type="number" class="form-control" placeholder="Nhập số điện thoại của bạn">
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="form-group">
+                                <label class="col-form-label">Tiêu đề<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="Nhập tiêu đề câu hỏi">
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="form-group">
+                                <label class="col-form-label">Nội dung câu hỏi<span class="text-danger">*</span></label>
+                                <textarea type="text" class="form-control" rows="3" placeholder="Vấn đề bạn đang gặp phải là gì?"></textarea>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center float-end p-3">
+                            <button class="btn-add-questions btn btn-danger w-auto fw-bold">Gửi câu hỏi</button>
+                        </div>
+                </form>
+            </div>
+            <div class="col-6 col-cau-hoi-thuong-gap">
+                <div class="form-group">
+                    <h2 class="fw-bold fs-16">Câu hỏi thường gặp</h2>
+                </div>
+                <div class="form-group">
+                    <i class="color-gray">Để tránh việc trùng lặp câu hỏi quý khách vui lòng tra cứu nội dung tương tự trước khi đặt câu hỏi.</i>
+                </div>
+                <div class="form-group">
+                    <div class="w-100 d-flex justify-content-around p-3">
+                        <form class="search-form2">
+                            <input class="input-search3" name="Keywords" placeholder="Tìm theo chủ đề hoặc từ khoá">
+                            <button class="btn-search3 btn-submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="list-cau-hoi-thuong-gap">
+                    <ul>
+                        <li>Người trên 60 tuổi có được vay ngân hàng không?</li>
+                        <li>Trên giấy khai sinh của con có bắt buộc phải có tên cả cha và mẹ không?</li>
+                        <li>Sinh viên tình nguyện đi phân luồng giao thông có phải là người đang thi hành công vụ?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer class="text-dark text-center py-3">
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    <p>Designed with 💻 by Your Name</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Your custom JavaScript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thư viện Datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div th:replace="partials/navbar_profile :: nav"></div>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-img">
+                <img th:src="${user.avatar}" alt="Profile Image">
+            </div>
+            <div class="profile-nav-info">
+                <h3><span th:text="${user.name}"></span></h3>
+            </div>
+        </div>
+        <div class="main-bd">
+            <div class="left-side">
+                <div class="profile-side">
+                    <p class="mobile-no">
+                        <i class="fa fa-phone"></i>
+                        <span th:text="${user.phoneNum != null ? user.phoneNum : 'Chưa cung cấp'}"></span>
+                    </p>
+                    <p class="user-mail"><i class="fa fa-envelope"></i><span th:text="${user.account.email}"></span></p>
+                    <div class="user-bio">
+                        Gói đăng ký:
+                        <span class="text-danger"><strong><span th:text="${packageName}"></span></strong></span>
+                    </div>
+                    <div class="user-bio">
+                        Ngày đăng ký:
+                        <span class="text-danger"><strong><span th:if="${startDate != null}" th:text="${#temporals.format(startDate, 'dd/MM/yyyy')}"></span></strong></span>
+                    </div>
+
+                    <!--            <div class="profile-btn">-->
+                    <!--              <button class="btn-logout" id="btn-logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</button>-->
+                    <!--            </div>-->
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="nav2">
+                    <ul>
+                        <li class="user-post-save active"><i class="fa-regular fa-bookmark"></i>Văn bản đã lưu</li>
+                        <li class="user-account"><i class="fa-regular fa-circle-user"></i>Quản lý tài khoản</li>
+                        <li class="user-question"><i class="fa-regular fa-message"></i> Quản lý câu hỏi</li>
+                        <li class="user-transaction"><i class="fa-solid fa-clock-rotate-left"></i>Quản lý giao dịch</li>
+                        <li class="user-search-history">
+                            <a href="javascript:void(0);" id="search-history-link" class="text-decoration-none text-black">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                Lịch sử tìm kiếm
+                            </a>
+                        </li>
+                        <li class="user-change-pw" th:if="${user.account.authProvider == 'LOCAL'}">
+                            <i class="fa-solid fa-key"></i>
+                            <a href="/account/change-password">Đổi mật khẩu</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-posts-save tab">
+                        <h1>Văn bản đã lưu</h1>
+                        <div class="w-100 d-flex justify-content-around p-3">
+                            <form class="search-form2">
+                                <input class="input-search3" name="Keywords" placeholder="Tìm kiếm văn bản đã lưu...">
+                                <button class="btn-search3 btn-submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                        <form class="row search-form" id="searchAdvancedForm">
+                            <div class="col-md-6">
+                                <div class="row align-items-center p-2">
+                                    <div class="col-md-4 p-0">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Ngày áp dụng</option>
+                                            <option value="1">Ngày ban hành</option>
+                                            <option value="2">Ngày áp dụng</option>
+                                            <option value="3">Ngày cập nhật</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 p-0">
+                                        <div class="input-group date" id="datepicker">
+                                            <input type="text" class="input-date form-control flatpickr" id="dateStart" placeholder="Từ (Ng/Th/Năm)"/>
+                                            <span class="input-group-append">
+                                              <span class="input-date input-group-text bg-light d-block">
+                                                <i class="fa fa-calendar"></i>
+                                              </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 p-0">
+                                        <div class="input-group date" id="datepicker2">
+                                            <input type="text" class="input-date form-control flatpickr" id="dateEnd" placeholder="Đến (Ng/Th/Năm)"/>
+                                            <span class="input-group-append">
+                                              <span class="input-date input-group-text bg-light d-block">
+                                                <i class="fa fa-calendar"></i></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center p-2">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Lĩnh vực hoạt động</option>
+                                        <option value="1">Ngày ban hành</option>
+                                        <option value="2">Ngày áp dụng</option>
+                                        <option value="3">Ngày cập nhật</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row align-items-center p-2">
+                                    <div class="col-md-6 p-0">
+                                        <select class="form-select " aria-label="Default select example">
+                                            <option selected>Loại văn bản</option>
+                                            <option value="1">Ngày ban hành</option>
+                                            <option value="2">Ngày áp dụng</option>
+                                            <option value="3">Ngày cập nhật</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 p-0">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Cơ quan ban hành</option>
+                                            <option value="1">Ngày ban hành</option>
+                                            <option value="2">Ngày áp dụng</option>
+                                            <option value="3">Ngày cập nhật</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center p-2">
+                                    <input type="text" class="input-search form-control bg-light " placeholder="Người ký">
+                                </div>
+                            </div>
+                        </form>
+                        <h6 class="p-3">
+                            Không tìm thấy dữ liệu phù hợp.
+                        </h6>
+
+                        <div class="list-post-save">
+                            <div class="d-block">
+                                <div class="d-block">
+                                    <i>Có tất cả <span th:text="${documents.size()}">1</span> văn bản</i>
+                                    <form th:action="@{/saved-documents/remove-all}" method="post">
+                                        <button type="submit" class="btn-tai-luu-loi border-0 delete-all">
+                                            <i class="fa-regular fa-trash-can p-1"></i> Xóa tất cả
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <table class="table-post-save">
+                                <tbody>
+                                <tr th:each="document : ${documents}">
+                                    <td class="col-title">
+                                        <div class="article-title">
+                                            <a class="text-decoration-none" th:href="@{/documents/{id}(id=${document.id})}" th:text="${document.title}"></a>                                        </div>
+                                        <div class="item-meta">
+                                            <a href="#" class="tag-item-post-save">Tóm tắt</a>
+                                            <a href="#" class="tag-item-post-save">Văn bản liên quan</a>
+                                            <a href="#" class="tag-item-post-save">Tải về</a>
+                                        </div>
+                                    </td>
+                                    <td class="col_time">
+                                            <div>
+                                                <span class="">Ban hành: </span>
+                                                <span class="article-meta" th:text="${document.issueDate != null ? document.issueDate : 'Đang cập nhật'}"></span>
+                                            </div>
+                                            <div class="d-lg-block d-none">
+                                                <span class="">Áp dụng: </span>
+                                                <span class="article-meta">Đã biết</span>
+                                            </div>
+                                            <div>
+                                                <span class="">Hiệu lực: </span>
+                                                <span class="article-meta">Đã biết</span>
+                                            </div>
+                                            <div class="d-lg-block d-none">
+                                                <span class="">Cập nhật: </span>
+                                                <span class="article-meta" th:text="${#temporals.format(document.updatedAt, 'dd/MM/yyyy')}"></span>
+                                            </div>
+                                    </td>
+                                    <td class="col_dell">
+                                        <form th:action="@{/saved-documents/remove}" method="post">
+                                            <input type="hidden" name="userId" th:value="${user.id}">
+                                            <input type="hidden" name="documentId" th:value="${document.id}">
+                                            <button type="submit" class="btn-tai-luu-loi border-0">
+                                                <i class="fa-regular fa-trash-can text-dark"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="pagination">
+                                <div class="pagination-left">
+                                    <span>Hiển thị: </span>
+                                    <label>
+                                        <select>
+                                            <option>5 kết quả</option>
+                                            <option>10 kết quả</option>
+                                            <option>15 kết quả</option>
+                                            <option>20 kết quả</option>
+                                            <option>50 kết quả</option>
+                                            <option>100 kết quả</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="pagination-right">
+                                    <span class="pagination-item active">
+                                        <span>1</span>
+                                    </span>
+                                    <span class="pagination-item">
+                                        <span>2</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-account tab" style="display: none;">
+                        <div class="user-profile-box">
+                            <div class="d-flex align-items-center p-1">
+                                <div class="label">Tài khoản:</div>
+                                <div class="text-dark"><strong><span th:text="${user.account.email}"></span></strong></div>
+                            </div>
+                            <div class="d-flex align-items-center p-1">
+                                <div class="label">Gói đăng ký:</div>
+                                <p class="text-danger"><strong><span th:text="${packageName}"></span></strong></p>
+                            </div>
+                            <div class="d-flex align-items-center p-1">
+                                <div class="label">Ngày đăng ký:</div>
+                                <p class="text-danger"><strong><span th:if="${startDate != null}" th:text="${#temporals.format(startDate, 'dd/MM/yyyy')}"></span></strong></p>
+                            </div>
+                        </div>
+                        <div class="user-profile">
+                            <form action="/user/update" method="POST" id="updateForm">
+                                <div class="user-profile">
+                                    <input type="hidden" name="account.email" th:value="${user.account.email}">
+
+                                    <!-- Họ và tên -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Họ và tên:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span class="view-mode" th:text="${user.name}"></span>
+                                            <input type="text" class="form-control edit-mode d-none" name="name" th:value="${user.name}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Email:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span th:text="${user.account.email}"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Số điện thoại -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Số điện thoại:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span class="view-mode" th:text="${user.phoneNum}"></span>
+                                            <input type="number" class="form-control edit-mode d-none" name="phoneNum" th:value="${user.phoneNum}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Địa chỉ -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Địa chỉ:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span class="view-mode" th:text="${user.city} + ', ' + ${user.district} + ', ' + ${user.ward}"></span>
+                                            <div class="edit-mode d-none d-flex gap-2">
+                                                <select class="form-select form-select-sm" id="city" name="city">
+                                                    <option th:if="${user.city != null and user.city != ''}" th:value="${user.city}" th:text="${user.city}"></option>
+                                                    <option th:if="${user.city == null or user.city == ''}" value="" selected disabled>Chọn tỉnh/thành</option>
+                                                </select>
+
+                                                <select class="form-select form-select-sm" id="district" name="district">
+                                                    <option th:if="${user.district != null and user.district != ''}" th:value="${user.district}" th:text="${user.district}"></option>
+                                                    <option th:if="${user.district == null or user.district == ''}" value="" selected disabled>Chọn quận/huyện</option>
+                                                </select>
+
+                                                <select class="form-select form-select-sm" id="ward" name="ward">
+                                                    <option th:if="${user.ward != null and user.ward != ''}" th:value="${user.ward}" th:text="${user.ward}"></option>
+                                                    <option th:if="${user.ward == null or user.ward == ''}" value="" selected disabled>Chọn phường/xã</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ngày sinh -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Ngày sinh:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span class="view-mode" th:text="${#temporals.format(user.dateOfBirth, 'dd/MM/yyyy')}"></span>
+
+                                            <input type="date" class="form-control edit-mode d-none" name="dateOfBirth"
+                                                   th:value="${#temporals.format(user.dateOfBirth, 'yyyy-MM-dd')}">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Giới tính -->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label class="col-form-label">Giới tính:</label>
+                                        </div>
+                                        <div class="col">
+                                            <span class="view-mode"
+                                                  th:text="${user.gender == 1 ? 'Nam' : (user.gender == 2 ? 'Nữ' : (user.gender == 3 ? 'Khác' : ''))}">
+                                            </span>
+                                            <div class="edit-mode d-none d-flex gap-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender" value="1" th:checked="${user.gender == 1}">
+                                                    <label class="form-check-label">Nam</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender" value="2" th:checked="${user.gender == 2}">
+                                                    <label class="form-check-label">Nữ</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender" value="3" th:checked="${user.gender == 3}">
+                                                    <label class="form-check-label">Khác</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nút sửa / cập nhật -->
+                                    <div class="row g-3 align-items-center justify-content-center">
+                                        <button type="button" id="editButton" class="btn btn-primary">Sửa</button>
+                                        <button type="submit" id="saveButton" class="btn btn-danger d-none">Cập nhật</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="profile-questions tab" style="display: none;">
+                        <table class="table-questions w-100">
+                            <tbody>
+                            <tr>
+                                <th>
+                                    <i class="fa-regular fa-hourglass-half p-3"></i>
+                                </th>
+                                <td class="col-title">
+                                    <div class="article-title">
+                                        <h6 class="text-decoration-none"><strong>Từ 01/01/2025 có bắt buộc phải mua bảo hiểm xe máy?</strong></h6>
+                                    </div>
+                                    <div class="item-time">
+                                        <p class="post-time">13 giây trước</p>
+                                    </div>
+                                </td>
+                                <td class="col-change-question">
+                                    <button class="btn-toggle1 btn-answer">
+                                        Đang chờ trả lời
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <div class="content-drop">
+                                        <ul class="drop-down-content">
+                                            <li class="item-list-1">
+                                                <a href="#" class="cap-nhat-cau-hoi" data-bs-toggle="modal" data-bs-target="#updateQuestionModal">
+                                                    <i class="fa-solid fa-pen p-2"></i>Chỉnh sửa
+                                                </a>
+                                                <div class="modal" tabindex="-1" id="updateQuestionModal">
+                                                    <div class="modal-dialog" >
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="edit-question">
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Họ và tên</label>
+                                                                                <input type="text" class="form-control" value="Như Quỳnh">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Email<span class="text-danger fw-bold">*</span></label>
+                                                                                <input type="email" class="form-control" value="dangnhuquynh2403@gmail.com">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Số điện thoại</label>
+                                                                                <input type="number" class="form-control" value="0911799733">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Lĩnh vực<span class="text-danger fw-bold">*</span></label>
+                                                                                <select class="form-select form-select-sm"  aria-label=".form-select-sm">
+                                                                                    <option value="" selected>Chọn lĩnh vực câu hỏi</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Tiêu đề<span class="text-danger fw-bold">*</span></label>
+                                                                                <input type="text" class="form-control" value="Từ 01/01/2025 có bắt buộc phải mua bảo hiểm xe máy?">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row g-3 align-items-center">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Nội dung câu hỏi<span class="text-danger fw-bold">*</span></label>
+                                                                                <textarea class="form-control" rows="3">Từ 01/01/2025 có bắt buộc phải mua bảo hiểm xe máy?</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn-save w-auto" data-mdb-ripple-init>Lưu câu hỏi</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-list-1">
+                                                <a href="#" class="xoa-cau-hoi" title="Xóa câu hỏi" data-bs-toggle="modal" data-bs-target="#deleteAlertQuestionModal">
+                                                    <i class="fa-regular fa-pen-to-square p-2"></i>Xóa
+                                                </a>
+                                                <div class="modal-box-danger">
+                                                    <div class="modal fade" id="deleteAlertQuestionModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <button type="button" class="btn-close-model" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                                <div class="modal-body">
+                                                                    <div class="modal-icon">
+                                                                        <i class="fa-regular fa-bell"></i>
+                                                                    </div>
+                                                                    <h3 class="title">Thông báo</h3>
+                                                                    <p class="description">Xác nhận xóa câu hỏi này ?</p>
+                                                                    <button class="btn-cont" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" >Đồng ý</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-box-success">
+                                                    <div class="modal fade" id="deleteQuestionModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <button type="button" class="btn-close-model" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                                <div class="modal-body">
+                                                                    <div class="modal-icon">
+                                                                        <i class="fa fa-smile"></i>
+                                                                    </div>
+                                                                    <p class="description">Xóa câu hỏi thành công</p>
+                                                                    <button class="btn-cont" data-bs-dismiss="modal" >Đóng</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-box-danger">
+                                                    <div class="modal fade" id="deleteFailureQuestionModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <button type="button" class="btn-close-model" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                                <div class="modal-body">
+                                                                    <div class="modal-icon">
+                                                                        <i class="fa fa-frown"></i>
+                                                                    </div>
+                                                                    <p class="description">Xóa câu hỏi không thành công</p>
+                                                                    <button class="btn-cont" data-bs-dismiss="modal" >Đóng</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="hoi-dap-number">#11961</span>
+                                </th>
+                                <td class="col-title">
+                                    <div class="article-title">
+                                        <a href="#" class="text-decoration-none"><strong>Từ 01/01/2025 có bắt buộc phải mua bảo hiểm xe máy?</strong></a>
+                                    </div>
+                                    <div class="item-tag">
+                                        <a href="#" class="question-tag text-decoration-none">An ninh trật tự</a>
+                                    </div>
+                                    <div class="item-time">
+                                        <p class="post-time">13/12/2024</p>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination">
+                            <div class="pagination-left">
+                                <span>Hiển thị: </span>
+                                <label>
+                                    <select>
+                                        <option>5 kết quả</option>
+                                        <option>10 kết quả</option>
+                                        <option>15 kết quả</option>
+                                        <option>20 kết quả</option>
+                                        <option>50 kết quả</option>
+                                        <option>100 kết quả</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="pagination-right">
+                                    <span class="pagination-item active">
+                                        <span>1</span>
+                                    </span>
+                                <span class="pagination-item">
+                                        <span>2</span>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-transactions tab" style="display: none;">
+                        <div class="transaction-history">
+                            <h2>Lịch sử giao dịch</h2>
+
+                            <div th:if="${subscriptions.isEmpty()}">
+                                <p class="text-danger">Bạn chưa đăng ký gói dịch vụ nào.</p>
+                            </div>
+
+                            <table class="table table-bordered" th:if="${not subscriptions.isEmpty()}">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center">STT</th>
+                                    <th>Tên gói</th>
+                                    <th class="text-center">Ngày mua</th>
+                                    <th class="text-center">Giá gói</th>
+                                    <th class="text-center">Số token</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="sub, iterStat : ${subscriptions}">
+                                    <td class="text-center" th:text="${iterStat.count}"></td>
+                                    <td th:text="${sub.packageName}"></td>
+                                    <td class="text-center" th:text="${#temporals.format(sub.transactionDate, 'dd/MM/yyyy')}"></td>
+                                    <td th:text="${sub.getPrice()}"></td>
+                                    <td th:text="${sub.getToken()}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="profile-search-history tab">
+                        <div th:replace="fragments/search-history :: searchHistoryList">
+                        </div>
+                    </div>
+                    <div class="profile-change-pw tab" style="display: none;">
+                        <form>
+                            <div class="edit-question">
+                                <div class="row g-3 align-items-center">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Mật khẩu hiện tại:</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-items-center">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Mật khẩu mới:</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row g-3 align-items-center">
+                                    <div class="form-group">
+                                        <label class="col-form-label">Nhập lại mật khẩu:</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3 align-items-center justify-content-center p-3">
+                                <button class="btn-update btn btn-danger w-auto">Cập nhật</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('search-history-link').addEventListener('click', function () {
+        fetch('/search-history')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('profile-search-history').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Có lỗi khi tải lịch sử tìm kiếm:', error);
+            });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<!-- Your custom JavaScript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

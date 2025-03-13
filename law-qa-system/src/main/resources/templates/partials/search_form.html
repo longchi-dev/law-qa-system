@@ -1,0 +1,72 @@
+<div th:fragment="searchForm">
+    <!-- Form Tìm kiếm Chính -->
+    <form class="form-search-main border-0" th:action="@{/documents/search}" method="get">
+        <div class="w-100 d-table">
+            <div class="search-home">
+                <input type="text" class="input input-search-lvn search-field input-doc-search-all-suggest"
+                       name="query" placeholder="Tìm kiếm..." th:value="${param.query}">
+                <button type="submit" class="btn-search-lvn">
+                    <i class="fa fa-search"></i>
+                    <span class="m-hide">Tìm kiếm</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+<!--     Form Tìm kiếm Nâng Cao -->
+<!--    <form class="row search-form" th:action="@{/documents/search}" method="get">-->
+<!--        <input type="hidden" name="advancedSearch" value="true">-->
+
+<!--        <div class="d-flex flex-wrap gap-3">-->
+<!--            <div class="d-flex align-items-center gap-3">-->
+<!--                <i class="fa-solid fa-filter"></i>-->
+<!--                <strong>Tìm kiếm nâng cao</strong>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="searchOptions" id="option1" value="Tất cả" checked>-->
+<!--                <label class="form-check-label" for="option1">Tất cả</label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="searchOptions" id="option2" value="Tiêu đề">-->
+<!--                <label class="form-check-label" for="option2">Tiêu đề</label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--                <input class="form-check-input" type="radio" name="searchOptions" id="option3" value="Số hiệu văn bản">-->
+<!--                <label class="form-check-label" for="option3">Số hiệu văn bản</label>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-6">-->
+<!--            <div class="row align-items-center p-2">-->
+<!--                <div class="col-md-6 p-0">-->
+<!--                    <select class="form-select" name="documentType">-->
+<!--                        <option value="">Loại văn bản</option>-->
+<!--                        <th:block th:with="types=${#sets.toSet(documents.![type])}">-->
+<!--                            <option th:each="type : ${types}" th:value="${type}" th:text="${type}" th:if="${type != null}"></option>-->
+<!--                        </th:block>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 p-0">-->
+<!--                    <select class="form-select" name="author">-->
+<!--                        <option value="">Cơ quan ban hành</option>-->
+<!--                        <th:block th:with="authors=${#sets.toSet(documents.![author])}">-->
+<!--                            <option th:each="author : ${authors}" th:value="${author}" th:text="${author}" th:if="${author != null}"></option>-->
+<!--                        </th:block>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row align-items-center p-2">-->
+<!--                <select class="form-select" name="signer">-->
+<!--                    <option value="">Chọn người ký</option>-->
+<!--                    <th:block th:with="signers=${#sets.toSet(documents.![signer])}">-->
+<!--                        <option th:each="signer : ${signers}" th:value="${signer}" th:text="${signer}" th:if="${signer != null}"></option>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+
+<!--            <div class="col-12 text-end">-->
+<!--                <button type="submit" class="btn btn-primary">Tìm kiếm</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+</div>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <title>
+        Material Dashboard 3 by Creative Tim
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
+    <!-- Nucleo Icons -->
+    <link th:href="@{/css/nucleo-icons.css}" rel="stylesheet" />
+    <link th:href="@{/css/nucleo-svg.css}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- CSS Files -->
+    <link id="pagestyle" th:href="@{/css/material-dashboard.css}" rel="stylesheet" />
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+<div th:replace="partials/navbar_admin :: nav"></div>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Quản lý doanh thu</h6>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên tài khoản</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Gói</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số tiền</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày mua</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hết hạn</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="transaction : ${transactions}">
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success" th:text="${transaction.id}"></span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img th:src="@{${transaction.user.avatar}}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm" th:text="${transaction.user.name}"></h6>
+                                                <p class="text-xs text-secondary mb-0" th:text="${transaction.user.account.authProvider}"></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0" th:text="${transaction.packageName}"></p>
+<!--                                        <p class="text-xs text-secondary mb-0" th:text="${user.phoneNum}"></p>-->
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0" th:text="${#numbers.formatDecimal(transaction.amount, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></p>
+                                    </td>
+
+                                    <td class="align-middle text-center">
+                                        <span class="text-secondary text-xs font-weight-bold" th:text="${#temporals.format(transaction.transactionDate, 'dd/MM/yyyy')}"></span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-secondary text-xs font-weight-bold" th:text="${#temporals.format(transaction.expiryDate, 'dd/MM/yyyy')}"></span>
+                                    </td>
+<!--                                    <td class="align-middle">-->
+<!--                                        <a th:href="@{'/quan-ly/delete/' + ${user.id}}" class="text-secondary font-weight-bold text-xs">-->
+<!--                                            Xóa tài khoản-->
+<!--                                        </a>-->
+<!--                                    </td>-->
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="1" class="text-start font-weight-bold">Tổng thu:</td>
+                                    <td>
+                                        <p th:text="${#numbers.formatDecimal(totalRevenue, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></p>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/static/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/static/js/plugins/smooth-scrollbar.min.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/material-dashboard.min.js?v=3.2.0"></script>
+</body>
+
+</html>

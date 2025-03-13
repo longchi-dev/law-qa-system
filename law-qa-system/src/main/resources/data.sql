@@ -1,0 +1,151 @@
+--INSERT INTO tbl_documents
+--(
+--    title, content, keywords, sourceUrl, author, number, signer, issueDate, effectiveDate, type, isFeatured, createdAt, updatedAt
+--)
+--VALUES
+--(
+--    'Nghị định 123/2024/NĐ-CP về Quy định mới trong lĩnh vực lao động',
+--    'quy định các điều khoản mới trong việc bảo vệ quyền lợi của người lao động, tăng cường các chế tài xử phạt hành vi xâm phạm quyền lợi hợp pháp của người lao động.',
+--    'nghị định, lao động, quyền lợi, bảo vệ, chế tài',
+--    'http://localhost:8080/PDF/nghi-quyet-233-nq-cp-2024-phien-hop-chinh-phu-thuong-ky-thang-11.pdf',
+--    'Bộ Lao động - Thương binh và Xã hội',
+--    '123/2024/NĐ-CP',
+--    'Phó Thủ tướng Chính phủ',
+--    STR_TO_DATE('26/12/2024', '%d/%m/%Y'),
+--    STR_TO_DATE('26/12/2025', '%d/%m/%Y'),
+--    'DECREES',
+--    1,
+--    CURRENT_TIMESTAMP,
+--    CURRENT_TIMESTAMP
+--);
+--
+--INSERT INTO tbl_documents
+--(
+--    title, content, keywords, sourceUrl, author, number, signer, issueDate, effectiveDate, type, isFeatured, createdAt, updatedAt
+--)
+--VALUES
+--(
+--    'Thông tư 234/2024/TT-BLĐTBXH về Quy định an toàn lao động',
+--    'quy định các biện pháp bảo vệ an toàn cho người lao động trong môi trường làm việc có nguy cơ cao.',
+--    'thông tư, an toàn lao động, bảo vệ, lao động, nguy cơ',
+--    'http://localhost:8080/PDF/thong-tu-234-2024-tt-blodtbxh.pdf',
+--    'Bộ Lao động - Thương binh và Xã hội',
+--    '234/2024/TT-BLĐTBXH',
+--    'Bộ trưởng Bộ Lao động - Thương binh và Xã hội',
+--    STR_TO_DATE('10/07/2024', '%d/%m/%Y'),
+--    STR_TO_DATE('26/07/2026', '%d/%m/%Y'),
+--    'CIRCULARS',
+--    0,
+--    CURRENT_TIMESTAMP,
+--    CURRENT_TIMESTAMP
+--);
+--
+--INSERT INTO tbl_documents
+--(
+--    title, content, keywords, sourceUrl, author, number, signer, issueDate, effectiveDate, type, isFeatured, createdAt, updatedAt
+--)
+--VALUES
+--(
+--    'Quyết định 345/2024/QĐ-TTg về phát triển ngành công nghiệp',
+--    'nhằm hỗ trợ phát triển ngành công nghiệp, ưu đãi cho các dự án sản xuất trong nước.',
+--    'quyết định, phát triển, ngành công nghiệp, hỗ trợ, ưu đãi',
+--    'http://localhost:8080/PDF/quyet-dinh-345-2024-qd-ttg.pdf',
+--    'Thủ tướng Chính phủ',
+--    '345/2024/QĐ-TTg',
+--    'Thủ tướng Chính phủ',
+--    STR_TO_DATE('20/08/2024', '%d/%m/%Y'),
+--    STR_TO_DATE('25/06/2026', '%d/%m/%Y'),
+--    'DECISIONS',
+--    1,  -- noi bat
+--    CURRENT_TIMESTAMP,
+--    CURRENT_TIMESTAMP
+--);
+--
+--INSERT INTO tbl_documents
+--(
+--    title, content, keywords, sourceUrl, author, number, signer, issueDate, effectiveDate, type, isFeatured, createdAt, updatedAt
+--)
+--VALUES
+--(
+--    'Công văn 345/2024/QĐ-TTg về phát triển ngành công nghiệp',
+--    'nhằm hỗ trợ phát triển ngành công nghiệp, ưu đãi cho các dự án sản xuất trong nước.',
+--    'quyết định, phát triển, ngành công nghiệp, hỗ trợ, ưu đãi',
+--    'http://localhost:8080/PDF/quyet-dinh-345-2024-qd-ttg.pdf',
+--    'Thủ tướng Chính phủ',
+--    '345/2024/QĐ-TTg',
+--    'Thủ tướng Chính phủ',
+--    STR_TO_DATE('20/08/2024', '%d/%m/%Y'),
+--    STR_TO_DATE('15/09/2026', '%d/%m/%Y'),
+--    'OFFICIAL_LETTERS',
+--    1,  -- noi bat
+--    CURRENT_TIMESTAMP,
+--    CURRENT_TIMESTAMP
+--);
+--
+--INSERT INTO tbl_documents
+--(
+--    title, content, keywords, sourceUrl, author, number, signer, issueDate, effectiveDate, type, isFeatured, createdAt, updatedAt
+--)
+--VALUES
+--(
+--    'Công văn 345/2024/QĐ-TTg về phát triển ngành công nghiệp',
+--    'nhằm hỗ trợ phát triển ngành công nghiệp, ưu đãi cho các dự án sản xuất trong nước.',
+--    'quyết định, phát triển, ngành công nghiệp, hỗ trợ, ưu đãi',
+--    'http://localhost:8080/PDF/quyet-dinh-345-2024-qd-ttg.pdf',
+--    'Thủ tướng Chính phủ',
+--    '345/2024/QĐ-TTg',
+--    'Thủ tướng Chính phủ',
+--    STR_TO_DATE('20/08/2024', '%d/%m/%Y'),
+--    STR_TO_DATE('25/09/2026', '%d/%m/%Y'),
+--    'OFFICIAL_LETTERS',
+--    0,  -- noi bat
+--    CURRENT_TIMESTAMP,
+--    CURRENT_TIMESTAMP
+--);
+--
+--
+--
+--INSERT INTO tbl_document_details
+--(
+--    document_id, agency, gazetteNumber, gazetteDate, applyStatus, validityStatus, field
+--)
+--VALUES
+--(
+--    1,  -- document_id (Nghị định 123/2024/NĐ-CP)
+--    'Bộ Lao động - Thương binh và Xã hội',   -- agency
+--    'CB-12345',                               -- gazetteNumber
+--    STR_TO_DATE('25/06/2024', '%d/%m/%Y'),    -- gazetteDate
+--    'Đã áp dụng',                             -- applyStatus
+--    'Có hiệu lực',                            -- validityStatus
+--    'Lao động'                               -- field
+--);
+--
+--INSERT INTO tbl_document_details
+--(
+--    document_id, agency, gazetteNumber, gazetteDate, applyStatus, validityStatus, field
+--)
+--VALUES
+--(
+--    2,  -- document_id (Thông tư 234/2024/TT-BLĐTBXH)
+--    'Bộ Lao động - Thương binh và Xã hội',   -- agency
+--    'CB-23456',                               -- gazetteNumber
+--    STR_TO_DATE('12/07/2024', '%d/%m/%Y'),    -- gazetteDate
+--    'Đã áp dụng',                             -- applyStatus
+--    'Có hiệu lực',                            -- validityStatus
+--    'An toàn lao động'                       -- field
+--);
+--
+--INSERT INTO tbl_document_details
+--(
+--    document_id, agency, gazetteNumber, gazetteDate, applyStatus, validityStatus, field
+--)
+--VALUES
+--(
+--    3,  -- document_id (Quyết định 345/2024/QĐ-TTg)
+--    'Thủ tướng Chính phủ',                   -- agency
+--    'CB-34567',                              -- gazetteNumber
+--    STR_TO_DATE('30/08/2024', '%d/%m/%Y'),   -- gazetteDate
+--    'Đã áp dụng',                            -- applyStatus
+--    'Có hiệu lực',                           -- validityStatus
+--    'Ngành công nghiệp'                      -- field
+--);

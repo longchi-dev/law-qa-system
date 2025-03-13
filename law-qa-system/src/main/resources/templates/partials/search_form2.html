@@ -1,0 +1,106 @@
+<div th:fragment="searchForm">
+    <!-- Form Tìm kiếm Chính -->
+    <form class="form-search-main border-0">
+        <div class="w-100 d-table">
+            <div class="search-home">
+                <input class="input input-search-lvn search-field input-doc-search-all-suggest" placeholder="Tìm kiếm...">
+                <span class="btn-search-lvn" id="toggleMainSearch" onclick="window.location.href='/documents/search'">
+                    <i class="fa fa-search"></i>
+                    <span class="m-hide">Tìm kiếm</span>
+                </span>
+            </div>
+            <a class="dr-btn-search dr-home text-decoration-none text-dark" href="/documents/search">
+                <i class="fa-regular fa-file-lines"></i> Tìm nâng cao
+            </a>
+        </div>
+    </form>
+
+    <!-- Form Tìm kiếm Nâng Cao -->
+    <form class="row search-form" id="searchAdvancedForm" style="display: none;">
+        <div class="d-flex gap-3">
+            <div class="mb-3 d-flex align-items-center gap-3">
+                <i class="fa-solid fa-filter"></i>
+                <strong>Tìm kiếm nâng cao</strong>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchOptions" id="option1" checked>
+                <label class="form-check-label" for="option1">Tất cả</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchOptions" id="option2">
+                <label class="form-check-label" for="option2">Tiêu đề</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchOptions" id="option3">
+                <label class="form-check-label" for="option3">Số hiệu văn bản</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="SearchExact" checked>
+                <label class="form-check-label" for="SearchExact">Tìm kiếm qua nội dung</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row align-items-center p-2">
+                <div class="col-md-4 p-0">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Ngày áp dụng</option>
+                        <option value="1">Ngày ban hành</option>
+                        <option value="2">Ngày áp dụng</option>
+                        <option value="3">Ngày cập nhật</option>
+                    </select>
+                </div>
+                <div class="col-md-4 p-0">
+                    <div class="input-group date" id="datepicker">
+                        <input type="text" class="input-date form-control flatpickr" id="dateStart" placeholder="Từ (Ng/Th/Năm)"/>
+                        <span class="input-group-append">
+                          <span class="input-date input-group-text bg-light d-block">
+                            <i class="fa fa-calendar"></i>
+                          </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 p-0">
+                    <div class="input-group date" id="datepicker2">
+                        <input type="text" class="input-date form-control flatpickr" id="dateEnd" placeholder="Đến (Ng/Th/Năm)"/>
+                        <span class="input-group-append">
+                          <span class="input-date input-group-text bg-light d-block">
+                            <i class="fa fa-calendar"></i>
+                          </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center p-2">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Lĩnh vực hoạt động</option>
+                    <option value="1">Ngày ban hành</option>
+                    <option value="2">Ngày áp dụng</option>
+                    <option value="3">Ngày cập nhật</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row align-items-center p-2">
+                <div class="col-md-6 p-0">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Loại văn bản</option>
+                        <option value="1">Ngày ban hành</option>
+                        <option value="2">Ngày áp dụng</option>
+                        <option value="3">Ngày cập nhật</option>
+                    </select>
+                </div>
+                <div class="col-md-6 p-0">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Cơ quan ban hành</option>
+                        <option value="1">Ngày ban hành</option>
+                        <option value="2">Ngày áp dụng</option>
+                        <option value="3">Ngày cập nhật</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row align-items-center p-2">
+                <input type="text" class="input-search form-control bg-light" placeholder="Người ký">
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thư viện Datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="main-navbar navbar navbar-light">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#">
+                <img class="img-logo" th:src="@{/images/logo.jpg}" alt="Luật Việt Nam">
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <div>Tổng đài trực tuyến <span class="text-danger"><strong>19006192</strong></span></div>
+                <div>|</div>
+                <div class="list-menu">
+                    <a href="#" class="list-title text-decoration-none">Gói dịch vụ & giá</a>
+                    <ul class="list-item">
+                        <li><a class="text-decoration-none" href="#">Tra cứu văn bản</a></li>
+                        <li><a class="text-decoration-none" href="">AI Luật - Trợ lý </a></li>
+                    </ul>
+                </div>
+                <div>|</div>
+                <div class="list-menu">
+                    <div class="list-title border border-secondary border-1 rounded d-flex align-items-center border">
+                        <img th:src="@{/images/TiengAnh.png}" alt="Tiếng Anh" class="icon-language">
+                        <div>Tiếng Anh</div>
+                    </div>
+                    <ul class="list-item">
+                        <li class="d-flex align-items-center">
+                            <img th:src="@{/images/vn.jpg}" alt="Tiếng Anh" class="icon-language">
+                            <a class="text-decoration-none">Tiếng Việt</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-menu">
+                    <a href="#" class="text-decoration-none text-dark"><i class="fa-regular fa-bell p-2"></i></a>
+                </div>
+                <div class="list-menu">
+                    <a href="#" class="text-decoration-none text-dark"><i class="fa-regular fa-address-card p-1"></i> Trang cá nhân</a>
+                </div>
+                <div class="list-menu position-relative">
+                    <div class="login-dropdown" onclick="toggleDropdown()">
+                        <div class="btn-user-login">
+                            <div class="thumb-user">
+                                <img class="avatar-user" th:src="@{/images/avatar.png}" alt="">
+                            </div>
+                            <div class="grid-profile m-hide">
+                                <div class="name-user-text" title="dangnhuquynhthcs.06@icloud.com">
+                                    dangnhuquynhthcs.06@icloud.com
+                                    <i class="fa-solid fa-caret-down caret-custom"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-content p-0 m-0" id="profileDropdown">
+                        <span class="close-fix">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
+                        <div class="block-profile">
+                            <div class="box-profile">
+                               <div class="thumb-user">
+                                   <img class="avatar-user" th:src="@{/images/avatar.png}" alt="">
+                               </div>
+                               <div class="text-profile">
+                                   <div class="user">
+                                       <div class="user-name"><strong>dangnhuquynhthcs.06@icloud.com</strong></div>
+                                       <div class="user-email">dangnhuquynhthcs.06@icloud.com</div>
+
+                                   </div>
+                                   <div class="package">Tài khoản:
+                                       <span class="text-danger"><strong> miễn phí</strong></span>
+                                       <span>(1 người sử dụng)</span>
+                                   </div>
+                                   <div class="package">
+                                        <button class="btn btn-success fw-bold btn-sm">Nâng cấp/Gia hạn tài khoản</button>
+                                    </div>
+                               </div>
+                           </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-regular fa-circle-user"></i> Thông tin tài khoản
+                                </a>
+                            </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-regular fa-bookmark"></i> Tin đã lưu
+                                </a>
+                            </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-regular fa-message"></i> Quản lý câu hỏi
+                                </a>
+                            </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử giao dịch
+                                </a>
+                            </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-solid fa-key"></i>  Đổi mật khẩu
+                                </a>
+                            </div>
+                            <div class="profile">
+                                <a href="#" class="link-profile text-decoration-none">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="menu-navbar navbar navbar-light bg-light">
+        <div class="container justify-content-center">
+            <div class="d-flex align-items-center gap-5">
+                <a class="home-button" href="#"><i class="fa-solid fa-house"></i></a>
+                <div class="list-menu">
+                    <h6 class="list-title fw-bolder m-0">Tra cứu văn bản</h6>
+                    <ul class="list-item">
+                        <li class="d-flex align-items-center">
+                            <a class="text-decoration-none">Tiếng Việt</a>
+                        </li>
+                    </ul>
+                </div>
+                <h6 class="fw-bolder m-0">Tin pháp luật</h6>
+                <h6 class="fw-bolder m-0">Bản tin luật</h6>
+                <h6 class="fw-bolder m-0">Bản án - Án lệ</h6>
+                <h6 class="fw-bolder m-0">Luật sư tư vấn</h6>
+                <h6 class="fw-bolder m-0">Gói dịch vụ và giá</h6>
+                <h6 class="fw-bolder m-0">AI Luật - Trợ lý ảo</h6>
+                <a class="home-button" href="#"><i class="fa-solid fa-bars"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+<footer class="text-dark text-center py-3">
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    <p>Designed with 💻 by Your Name</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Your custom JavaScript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

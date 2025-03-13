@@ -1,0 +1,161 @@
+<nav>
+    <div class="container-fluid">
+        <div class="container-fluid container-lg">
+            <div class="textColor">
+                <div class="row justify-content-center align-items-center mx-auto">
+                    <div class="col-lg-3 col-12">
+                        <div class="display-3 fw-bold py-2 text-center text-lg-start d-none d-lg-block">
+                            <a href="">
+                                <img class="img-logo" th:src="@{/images/logo.png}" alt="Luật Việt Nam">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-9 d-none d-lg-flex justify-content-end align-items-center gap-3 p-0">
+                        <div class="list-menu">
+                            <a href="#" class="list-title text-decoration-none">Gói dịch vụ & giá</a>
+                            <ul class="list-item">
+                                <li><a class="text-decoration-none" href="/subscription/">Mua gói cước</a></li>
+                                <li><a class="text-decoration-none" href="/chat">AI Luật - Trợ lý </a></li>
+                            </ul>
+                        </div>
+                        <div>|</div>
+                        <div class="list-menu">
+                            <a href="/user/thong-tin-tai-khoan" class="text-decoration-none text-dark"><i class="fa-regular fa-address-card p-1"></i> Trang cá nhân</a>
+                        </div>
+                        <div class="list-menu position-relative">
+                            <div class="login-dropdown" onclick="toggleDropdown()">
+                                <div class="btn-user-login">
+                                    <div class="thumb-user">
+                                        <img class="avatar-user" th:src="${user.avatar}" alt="">
+                                    </div>
+                                    <div class="grid-profile m-hide">
+                                        <div class="name-user-text" title="">
+                                            <span th:text="${user.name}"></span>
+                                            <i class="fa-solid fa-caret-down caret-custom"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-content p-0 m-0" id="profileDropdown">
+                                <span class="close-fix" id="closeDropdown">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </span>
+                                <div class="block-profile">
+                                    <div class="box-profile">
+                                        <div class="thumb-user">
+                                            <img class="avatar-user" th:src="${user.avatar}" alt="">
+                                        </div>
+                                        <div class="text-profile">
+                                            <div class="user">
+                                                <div class="user-name"><strong><span th:text="${user.name}"></span></strong></div>
+                                                <div class="user-email"><span th:text="${user.account.email}"></span></div>
+
+                                            </div>
+                                            <div class="package">Tài khoản:
+                                                <span class="text-danger fw-bolder"
+                                                      th:text="${#numbers.formatDecimal(user.balance, 0, 'COMMA', 0, 'POINT')} + ' VND'">
+                                                </span>
+                                            </div>
+                                            <div class="package">
+                                                <button class="btn btn-success fw-bold btn-sm" onclick="window.location.href='/api/v1/payment/'">Nạp tiền vào tài khoản</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="/user/thong-tin-tai-khoan" class="link-profile text-decoration-none">
+                                            <i class="fa-regular fa-circle-user"></i> Thông tin tài khoản
+                                        </a>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="#" class="link-profile text-decoration-none">
+                                            <i class="fa-regular fa-bookmark"></i> Tin đã lưu
+                                        </a>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="#" class="link-profile text-decoration-none">
+                                            <i class="fa-regular fa-message"></i> Quản lý câu hỏi
+                                        </a>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="#" class="link-profile text-decoration-none">
+                                            <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử giao dịch
+                                        </a>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="/account/doi-mat-khau"
+                                           class="link-profile text-decoration-none"
+                                           th:if="${user.account.authProvider == 'LOCAL'}"
+                                           th:classappend="${user.account.authProvider != 'LOCAL'} ? 'disabled' : ''"
+                                           th:attr="href=${user.account.authProvider == 'LOCAL'} ? '/account/change-password' : '#'">
+                                            <i class="fa-solid fa-key"></i> Đổi mật khẩu
+                                        </a>
+                                    </div>
+                                    <div class="profile">
+                                        <a href="/account/dang-xuat" class="link-profile text-decoration-none">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-0 d-lg-none">
+            <div class="text-center display-3 fw-bold mb-2 d-lg-none"> <img class="img-logo" th:src="@{/images/logo.jpg}" alt="Luật Việt Nam"></div>
+            <div class="navbarBgDark" data-bs-theme="dark">
+                <nav class="navbar navbar-expand-lg justify-content-center justify-content-lg-between p-0 fw-bolder">
+                    <button class="navbar-toggler m-3 w-100" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                        <ul class="navbar-nav ps-3">
+                            <li class="nav-item d-lg-none">
+                                <a onclick="window.location.href='/user/thong-tin-tai-khoan'" class="nav-link px-lg-3">
+                                    <span class="thumb-user">
+                                        <img class="avatar-user" th:src="${user.avatar}" alt="">
+                                    </span>
+                                    <span class="grid-profile m-hide">
+                                        <span class="name-user-text text-white" title="">
+                                            <span th:text="${user.name}"></span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active pe-3 d-lg-block d-none" aria-current="page" href="/"><i class="fa-solid fa-house"></i></a>
+                                <a class="nav-link active pe-3 d-lg-none" aria-current="page" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Văn bản mới</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Tra cứu văn bản</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Dự thảo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Tin văn bản mới</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Tin pháp luật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="#">Bản tin luật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3" href="/luat-su-tu-van">Luật sư tư vấn</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3 d-lg-none" href="/account/dang-xuat">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>

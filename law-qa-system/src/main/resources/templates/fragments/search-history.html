@@ -1,0 +1,18 @@
+<div th:fragment="searchHistoryList">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th class="text-center">STT</th>
+            <th class="text-center">Từ khóa</th>
+            <th class="text-center">Thời gian tìm kiếm</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="history, iterStat : ${searchHistoryList}">
+            <td class="text-center" th:text="${iterStat.count}"></td>
+            <td th:text="${history.query}"></td>
+            <td class="text-center" th:text="${#temporals.format(history.searchTime, 'dd/MM/yyyy HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

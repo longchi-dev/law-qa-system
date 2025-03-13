@@ -1,0 +1,137 @@
+<!-- Google Fonts -->
+<!DOCTYPE html>
+<html lang="vn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHAT AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link th:href="@{/css/ChatAI.css}" rel="stylesheet">
+</head>
+<body>
+<header class="container-fluid text-white mb-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <img th:src="@{/images/ai-tra-cuu-luat-header-logo.svg}" alt="Logo" class="me-2 logo">
+    </div>
+    <!-- Avatar với dropdown -->
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+        <img th:src="${user.avatar}" alt="Avatar" class="rounded-circle me-2">
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+        <a href="/user/thong-tin-tai-khoan" class="dropdown-item" >
+          <img th:src="${user.avatar}" alt="Avatar" class="rounded-circle me-2">
+          <span class="fw-bold" th:text="${user.name}"></span>
+        </a>
+        <a href="/" class="dropdown-item">
+          <i class="fa-solid fa-right-from-bracket icon"></i>
+          <span class="fw-bold">Về trang chủ</span>
+        </a>
+      </ul>
+    </div>
+  </div>
+</header>
+
+  <section class="message-area">
+    <div th:if="${errorMessage}" style="color: red;">
+      <p th:text="${errorMessage}"></p>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="chat-area">
+            <!-- chatlist -->
+            <div class="chatlist border">
+              <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="chat-header">
+                    <div class="msg-search">
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Tìm kiếm đoạn chat" aria-label="search">
+                      <a class="add" id="add-chat" href="/chat"><img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/add.svg" alt="add"></a>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Open-tab" data-bs-toggle="tab" data-bs-target="#Open" type="button" role="tab" aria-controls="Open" aria-selected="true">Lịch sử cuộc trò chuyện</button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="modal-body">
+                    <!-- chat-list -->
+                    <div class="chat-lists">
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="Open" role="tabpanel" aria-labelledby="Open-tab">
+                          <!-- chat-list -->
+                          <div class="chat-list">
+                            <div th:each="chatHistory : ${chatHistories}">
+                              <a href="#" class="d-flex align-items-center chat-link" th:data-chat-id="${chatHistory.id}">
+                                <div class="flex-grow-1 ms-3 chat-link">
+                                  <p th:text="${chatHistory.title}"></p>
+                                </div>
+                                <div class="chat-options d-flex align-items-center dropdown">
+                                  <button class="btn btn-light btn-sm options-btn rounded-circle d-flex align-items-center justify-content-center"
+                                          data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-list-ul"></i>
+                                  </button>
+                                  <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button class="dropdown-item rename-chat">Đổi tên</button></li>
+                                    <li><button class="dropdown-item share-chat" th:data-chat-id="${chatHistory.id}">Chia sẻ</button></li>
+                                    <li><button class="dropdown-item delete-chat text-danger" th:data-chat-id="${chatHistory.id}">Xóa</button></li>
+                                  </ul>
+                                </div>
+                              </a>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chatbox">
+              <div class="modal-dialog-scrollable">
+                <div class="modal-content border">
+                  <div class="modal-body">
+                    <div class="msg-body">
+                      <div class="chat-box" id="chatBox">
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center pt-0">
+                    <form class="flex items-center justify-center w-full space-x-2 send-form">
+                      <input id="messageInput"
+                              class="messageInput flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
+                              placeholder="Type your message" value="">
+                      <button id="sendButton"
+                              class="sendButton inline-flex items-center justify-center text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2">
+                        Send</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <!-- chatbox -->
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/chat.js}"></script>
+</html>
