@@ -50,7 +50,7 @@ The system leverages **Artificial Intelligence** to understand user queries and 
 ### 📥 Setup Steps
 1. **📂 Clone the Repository:**
   ```bash
-  git clone
+  git clone git@github.com:longchi-dev/law-qa-system.git
   cd hoi-dap-tim-kiem-luat
   ```
 
