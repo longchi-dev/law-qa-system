@@ -48,24 +48,24 @@ The system leverages **Artificial Intelligence** to understand user queries and 
 - 🎨 Thymeleaf
 
 ### 📥 Setup Steps
-1. 📂 Clone the Repository:
-```bash
-git clone
-cd hoi-dap-tim-kiem-luat
-```
+1. **📂 Clone the Repository:**
+  ```bash
+  git clone
+  cd hoi-dap-tim-kiem-luat
+  ```
 
-2. 🛠️ Configure the Database:
-- Create a database named law_qa in MySQL.
-- Update application.properties with MySQL and Elasticsearch credentials.
+2. **🛠️ Configure the Database:**
+  - Create a database named law_qa in MySQL.
+  - Update application.properties with MySQL and Elasticsearch credentials.
 
-3. 🧠 Download Ollama:
+3. **🧠 Download Ollama:**
 - 👉 https://ollama.com/download
 - Run:
 ```bash
 ollama pull nomic-embed-text
 ```
 
-4. 📦 Install Elasticsearch:
+4. **📦 Install Elasticsearch:**
 - 👉 https://github.com/elastic/elasticsearch
 - Extract and run:
 ```bash
@@ -73,7 +73,7 @@ bin/elasticsearch.bat
 ```
 - If prompted, set the password in application.properties.
 
-5. ▶️ Run the Project:
+5. **▶️ Run the Project:**
 - Visit: http://localhost:8080/
 - Login via:
   - 🔐 Google
